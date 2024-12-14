@@ -1,0 +1,22 @@
+from fastapi import FastAPI
+from espData import esp_router
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI() 
+origins = [ "http://localhost:8000", ] 
+app.add_middleware( CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"], )
+
+
+@app.get("/")
+async def welcome() -> dict:
+    return { "message": "Hello World"}
+
+@app.get("/test")
+async def welcome() -> dict:
+    return { "message": "Test"}
+
+@app.get("/test2")
+async def welcome() -> str:
+    return "Hi, Arseniy! How do u do?"
+
+app.include_router(esp_router)
