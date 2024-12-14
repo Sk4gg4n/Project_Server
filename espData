@@ -1,0 +1,29 @@
+from fastapi import APIRouter
+from model import Sensor_data
+from model import HC_SR04
+
+esp_data = []
+
+esp_router = APIRouter()
+
+@esp_router.post("/add_esp_data")
+async def add_todo(espState: Sensor_data) -> dict:
+    esp_data.append(espState)
+    print(espState)
+    print(esp_data)
+    return {"message": "ESP data added successfully"}
+
+@esp_router.get("/esp_data")
+async def retrieve_todos() -> dict:
+    return {"esp_data": esp_data}
+
+@esp_router.post("/add_esp_data")
+async def add_todo(espState: HC_SR04) -> dict:
+    esp_data.append(espState)
+    print(espState)
+    print(esp_data)
+    return {"message": "ESP data added successfully"}
+
+@esp_router.get("/esp_data")
+async def retrieve_todos() -> dict:
+    return {"esp_data": esp_data}
