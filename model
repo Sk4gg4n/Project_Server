@@ -1,0 +1,14 @@
+from pydantic import BaseModel
+
+class Sensor_data(BaseModel):
+    id: int
+    item: str
+    code : bool
+
+class HC_SR04(BaseModel):
+    BoardId: int
+    BoardModel: str
+    sensorPin: int
+    sensorType: str
+    val: float
+    
